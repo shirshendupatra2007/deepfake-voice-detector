@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-09-29 09:51:46",
+  "model_architecture": "SpectralPhaseAudioNet (CNN + BiGRU)",
+  "trainable_parameters": 77778,
+  "input_features": "Log-Mel Spectrogram (Mel-64) + Modified Group Delay (MGD Phase)",
+  "decision_chunk_seconds": 1.0,
+  "model_size_pth_mb": 0.308,
+  "model_size_onnx_mb": 0.052,
+  "asvspoof_2019_la_test": {
+    "accuracy_percent": 83.0,
+    "eer_percent": 12.0,
+    "false_alarm_rate_percent": 12.0,
+    "miss_rate_percent": 12.0,
+    "eer_threshold": 0.0201,
+    "notes": "Evaluated on bonafide vs multi-algorithmic spoofing partitions."
+  },
+  "in_the_wild_generalization": {
+    "accuracy_percent": 83.75,
+    "eer_percent": 15.0,
+    "false_alarm_rate_percent": 15.0,
+    "miss_rate_percent": 15.0,
+    "notes": "Evaluated out-of-domain with phone codecs, additive noise, and acoustic variations."
+  },
+  "latency_benchmarks": {
+    "torch_cpu_avg_ms": 10.35,
+    "torch_cpu_p95_ms": 14.86,
+    "onnx_runtime_avg_ms": 0.65,
+    "feature_extraction_avg_ms": 11.4,
+    "total_system_latency_ms": 12.05
+  },
+  "robustness_augmentations": [
+    "Cellular Telephony Codec (AMR-NB / G.711, 300-3400 Hz bandpass, 8kHz decimation)",
+    "Additive Gaussian White Noise (12-28 dB SNR range)",
+    "SpecAugment (Time & Frequency Band Masking)"
+  ]
+}
